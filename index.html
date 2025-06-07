@@ -53,6 +53,65 @@
             border-color: #38B2AC;
             box-shadow: 0 0 0 3px rgba(56, 178, 172, 0.2);
         }
+        /* Mobile menu styles */
+        .mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            z-index: 50;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 75%;
+            height: 100%;
+            background-color: rgba(17, 24, 39, 0.8);
+            backdrop-filter: blur(8px);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-y: auto;
+        }
+        .mobile-menu.hidden {
+            transform: translateX(100%);
+        }
+        .mobile-menu a {
+            transition: background-color 0.3s ease, color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+        }
+        .mobile-menu a:hover {
+            background-color: rgba(56, 178, 172, 0.2);
+            color: #38B2AC;
+        }
+        .hamburger div {
+            transition: all 0.3s ease;
+            width: 24px;
+            height: 2px;
+            background-color: #ffffff;
+            margin-bottom: 5px;
+        }
+        .hamburger:hover div {
+            transform: scale(1.1);
+        }
+        .hamburger.active div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active div:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        .overlay {
+            transition: opacity 0.3s ease-in-out;
+            z-index: 40;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -63,7 +122,8 @@
                 <div class="flex items-center">
                     <h1 class="text-2xl font-bold text-teal-500">Ashantha Fernando</h1>
                 </div>
-                <div class="flex items-center space-x-6">
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-6">
                     <a href="#home" class="text-gray-300 hover:text-teal-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">Home</a>
                     <a href="#about" class="text-gray-300 hover:text-teal-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">About</a>
                     <a href="#experience" class="text-gray-300 hover:text-teal-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">Experience</a>
@@ -71,30 +131,51 @@
                     <a href="#hobbies" class="text-gray-300 hover:text-teal-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">Hobbies</a>
                     <a href="#contact" class="text-gray-300 hover:text-teal-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">Contact</a>
                 </div>
+                <!-- Hamburger Menu -->
+                <div class="md:hidden flex items-center">
+                    <button class="hamburger focus:outline-none" onclick="toggleMenu()">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </button>
+                </div>
             </div>
         </div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu hidden md:hidden">
+            <div class="flex flex-col items-center justify-center space-y-6 h-full">
+                <a href="#home" class="text-gray-100 text-lg font-medium" onclick="toggleMenu()">Home</a>
+                <a href="#about" class="text-gray-100 text-lg font-medium" onclick="toggleMenu()">About</a>
+                <a href="#experience" class="text-gray-100 text-lg font-medium" onclick="toggleMenu()">Experience</a>
+                <a href="#skills" class="text-gray-100 text-lg font-medium" onclick="toggleMenu()">Skills</a>
+                <a href="#hobbies" class="text-gray-100 text-lg font-medium" onclick="toggleMenu()">Hobbies</a>
+                <a href="#contact" class="text-gray-100 text-lg font-medium" onclick="toggleMenu()">Contact</a>
+            </div>
+        </div>
+        <!-- Overlay -->
+        <div class="overlay hidden md:hidden" onclick="toggleMenu()"></div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-teal-500 to-teal-700 relative overflow-hidden">
         <div id="particles-js" class="hero-particles"></div>
         <div class="text-center hero-content fade-in">
-            <h1 class="text-6xl font-bold mb-4 tracking-tight text-white">Ashantha Fernando</h1>
-            <p class="text-2xl mb-6 text-gray-200">IT Support Technician | Sales Specialist | Musician | Traveler</p>
-            <a href="#contact" class="bg-white text-teal-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 hover-scale transition-all duration-300">Connect With Me</a>
+            <h1 class="text-4xl sm:text-6xl font-bold mb-4 tracking-tight text-white">Ashantha Fernando</h1>
+            <p class="text-lg sm:text-2xl mb-6 text-gray-200">IT Support Technician | Sales Specialist | Musician | Traveler</p>
+            <a href="#contact" class="bg-white text-teal-600 px-6 sm:px-8 py-2 sm:py-3 rounded-full font-semibold hover:bg-gray-100 hover-scale transition-all duration-300">Connect With Me</a>
         </div>
     </section>
 
-    <!-- About reesSection -->
-    <section id="about" class="py-24 bg-white">
+    <!-- About Section -->
+    <section id="about" class="py-16 sm:py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-12 text-teal-600">About Me</h2>
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-teal-600">About Me</h2>
             <div class="flex flex-col md:flex-row items-center gap-8">
                 <div class="md:w-1/2 mb-6 md:mb-0 fade-in">
-                    <img src="images/About-01.jpg" alt="Ashantha Fernando" class="rounded-xl shadow-lg hover-scale">
+                    <img src="images/About-01.jpg" alt="Ashantha Fernando" class="rounded-xl shadow-lg hover-scale w-full">
                 </div>
                 <div class="md:w-1/2 fade-in">
-                    <p class="text-lg text-gray-600 leading-relaxed">
+                    <p class="text-base sm:text-lg text-gray-600 leading-relaxed">
                         I’m a seasoned IT Support and Sales Specialist with over a decade of experience in technical troubleshooting, customer service, and digital marketing. I thrive on solving complex technical challenges and driving business growth through innovative solutions. Beyond tech, I’m a passionate guitarist in a Western band and an avid traveler, bringing creativity and a global perspective to my professional and personal life.
                     </p>
                 </div>
@@ -103,146 +184,148 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-24 bg-gray-50">
+    <section id="experience" class="py-16 sm:py-24 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-12 text-teal-600">Work Experience</h2>
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-teal-600">Work Experience</h2>
             <div class="space-y-8">
                 <div class="bg-white p-6 rounded-xl shadow-lg fade-in hover-scale">
-                    <h3 class="text-2xl font-semibold text-gray-800">IT Support Executive</h3>
-                    <p class="text-gray-500">Sevenrays Creative Solutions (Pvt) Ltd | 2021 - 2023</p>
-                    <ul class="list-disc list-inside mt-4 text-gray-600">
+                    <h3 class="text-xl sm:text-2xl font-semibold text-gray-800">IT Support Executive</h3>
+                    <p class="text-gray-500 text-sm sm:text-base">Sevenrays Creative Solutions (Pvt) Ltd | 2021 - 2023</p>
+                    <ul class="list-disc list-inside mt-4 text-gray-600 text-sm sm:text-base">
                         <li>Provided expert IT support, maintaining and repairing internal computers and laptops.</li>
                         <li>Designed and implemented an automated backup system for critical company documents.</li>
                         <li>Monitored CCTV systems and managed vendor coordination for maintenance.</li>
                     </ul>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg fade-in hover-scale">
-                    <h3 class="text-2xl font-semibold text-gray-800">IT Solutions & Sales Specialist</h3>
-                    <p class="text-gray-500">Green Solutions Lanka (Pvt) Ltd | 2014 - 2021</p>
-                    <ul class="list-disc list-inside mt-4 text-gray-600">
+                    <h3 class="text-xl sm:text-2xl font-semibold text-gray-800">IT Solutions & Sales Specialist</h3>
+                    <p class="text-gray-500 text-sm sm:text-base">Green Solutions Lanka (Pvt) Ltd | 2014 - 2021</p>
+                    <ul class="list-disc list-inside mt-4 text-gray-600 text-sm sm:text-base">
                         <li>Launched successful Facebook marketing campaigns to drive sales of PCs and mobile accessories.</li>
                         <li>Conducted field visits to secure wholesale deals with retailers.</li>
                         <li>Managed warranty claims and performed hardware repairs for PCs and laptops.</li>
                     </ul>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg fade-in hover-scale">
-                    <h3 class="text-2xl font-semibold text-gray-800">IT Support Technician</h3>
-                    <p class="text-gray-500">Arc Tech Lanka (Pvt) Ltd | 2012 - 2014</p>
-                    <ul class="list-disc list-inside mt-4 text-gray-600">
+                    <h3 class="text-xl sm:text-2xl font-semibold text-gray-800">IT Support Technician</h3>
+                    <p class="text-gray-500 text-sm sm:text-base">Arc Tech Lanka (Pvt) Ltd | 2012 - 2014</p>
+                    <ul class="list-disc list-inside mt-4 text-gray-600 text-sm sm:text-base">
                         <li>Diagnosed and resolved issues for over 1,000 computers, ensuring operational efficiency.</li>
                         <li>Coordinated with vendors for warranty claims and repairs.</li>
                         <li>Performed on-site PC repairs for labor tribunals nationwide.</li>
                     </ul>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg fade-in hover-scale">
-                    <h3 class="text-2xl font-semibold text-gray-800">Help Desk Technician</h3>
-                    <p class="text-gray-500">Etisalat Lanka (Pvt) Ltd | 2011 - 2012</p>
-                    <ul class="list-disc list-inside mt-4 text-gray-600">
+                    <h3 class="text-xl sm:text-2xl font-semibold text-gray-800">Help Desk Technician</h3>
+                    <p class="text-gray-500 text-sm sm:text-base">Etisalat Lanka (Pvt) Ltd | 2011 - 2012</p>
+                    <ul class="list-disc py-4 px-6 text-gray-600 text-sm sm:text-base">
                         <li>Managed service desk operations in a high-volume IT environment.</li>
                         <li>Monitored server room conditions to maintain system stability.</li>
                         <li>Deployed operating systems using SCCM for seamless installations.</li>
                     </ul>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg fade-in hover-scale">
-                    <h3 class="text-2xl font-semibold text-gray-800">IT Executive</h3>
-                    <p class="text-gray-500">FRP Services Lanka (Pvt) Ltd | 2008 - 2011</p>
-                    <ul class="list-disc list-inside mt-4 text-gray-600">
+                    <h3 class="text-xl sm:text-2xl-semibold">IT Executive</h3>
+                    <p class="text-gray-500 text-sm:p- sm:text-base">FRP Services Lanka (Pvt) Ltd | 2008 - 2011</p>
+                    <ul class="list-disc py-3 px-6 text-gray-600 text-sm:text-base">
                         <li>Delivered technical support for desktops and laptops across the organization.</li>
                         <li>Managed ERP system administration and resolved software issues efficiently.</li>
                     </ul>
                 </div>
             </div>
-        </div>
-    </section>
-
+        </section>
     <!-- Skills Section -->
-    <section id="skills" class="py-24 bg-white">
+    <section id="skills" class="py-16 sm:py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-12 text-teal-600">Skills</h2>
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-teal-600">Skills</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-gray-50 p-6 rounded-xl text-center fade-in hover-scale">
-                    <p class="font-semibold text-teal-600">Customer Service & Sales</p>
+                <div class="bg-gray-50 p-4 sm:p-6 rounded-xl text-center fade-in hover-scale">
+                    <p class="font-semibold text-teal-600 text-sm sm:text-base">Customer Service & Sales</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-xl text-center fade-in hover-scale">
-                    <p class="font-semibold text-teal-600">Digital Marketing</p>
+                <div class="bg-gray-50 p-4 sm:p-6 rounded-xl text-center fade-in hover-scale">
+                    <p class="font-semibold text-teal-600 text-sm sm:text-base">Digital Marketing</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-xl text-center fade-in hover-scale">
-                    <p class="font-semibold text-teal-600">Vendor Coordination</p>
+                <div class="bg-gray-50 p-4 sm:p-6 text-center fade-in hover-scale">
+                    <p class="font-semibold text-teal-600 text-sm sm:text-base">Vendor Coordination</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-xl text-center fade-in hover-scale">
-                    <p class="font-semibold text-teal-600">IT Troubleshooting</p>
+                <div class="bg-gray-50 p-4 sm:p-6 rounded-xl text-center fade-in hover-scale">
+                    <p class="font-semibold text-teal-600 text-sm sm:text-base">IT Troubleshooting</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-xl text-center fade-in hover-scale">
-                    <p class="font-semibold text-teal-600">Hardware Maintenance</p>
+                <div class="bg-gray-50 p-4 sm:p-6 rounded-xl text-center fade-in hover-scale">
+                    <p class="font-semibold text-teal-600 text-sm sm:text-base">Hardware Maintenance</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-xl text-center fade-in hover-scale">
-                    <p class="font-semibold text-teal-600">ERP Administration</p>
+                <div class="bg-gray-50 p-4 sm:p-6 rounded-xl text-center fade-in hover-scale">
+                    <p class="font-semibold text-teal-600 text-sm:text-base">ERP Administration</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-xl text-center fade-in hover-scale">
-                    <p class="font-semibold text-teal-600">CCTV Monitoring</p>
+                <div class="bg-gray-50 p-4 sm:p-6 rounded-xl text-center fade-in hover-scale">
+                    <p class="font-semibold text-teal-600 text-sm:text-base">CCTV Monitoring</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-xl text-center fade-in hover-scale">
-                    <p class="font-semibold text-teal-600">Microsoft Products</p>
+                <div class="bg-gray-50 p-4 sm:p-6 rounded-xl text-center fade-in hover-scale">
+                    <p class="font-semibold text-teal-600 text-sm sm:text-base">Microsoft Products</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Hobbies Section -->
-    <section id="hobbies" class="py-24 bg-gray-50 parallax" style="background-image: url('https://via.placeholder.com/1920x1080?text=Travel+Background')">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-12 text-teal-600">Hobbies & Passions</h2>
+    <section id="hobbies" class="py-16 sm:p-24 bg-gray-50 parallax" style="background-image: url('https://via.placeholder.com/1920x1080?text=Travel+Background')">
+        <div class="max-w-7xl mx-auto px-4 sm:p-6 lg:px-8">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-teal-600">Hobbies & Passions</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="bg-white p-6 rounded-xl shadow-lg fade-in hover-scale">
-                    <img src="images/band.jpg" alt="Guitar Performance" class="w-full h-64 object-cover rounded-lg mb-4">
-                    <h3 class="text-2xl font-semibold text-gray-800">Musician - Guitarist</h3>
-                    <p class="text-gray-600 mt-2">I’m a passionate guitarist, having performed in a Western band, bringing energy and creativity to live music. My love for music fuels my problem-solving mindset in tech.</p>
+                    <img src="images/band.jpg" alt="photo" alt="Guitar Performance" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl sm:text-2xl font-semibold text-gray-800">Musician - Guitarist</h3>
+                    <p class="text-gray-600 mt-2 text-sm:text-base">
+                        I’m a passionate guitarist, having performed in a Western band, bringing energy and creativity to live music. My love for music fuels my problem-solving mindset in tech.
+                    </p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg fade-in hover-scale">
-                    <img src="images/travel.jpg" alt="Travel Adventure" class="w-full h-64 object-cover rounded-lg mb-4">
-                    <h3 class="text-2xl font-semibold text-gray-800">Avid Traveler</h3>
-                    <p class="text-gray-600 mt-2">I love exploring new destinations, capturing moments, and embracing diverse cultures. Traveling inspires my adaptability and global perspective in both work and life.</p>
+                    <img src="images/travel.jpg" alt="Travel Adventure" class="w-full h-48 sm:h-64 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl sm:text-2xl font-semibold text-gray-800">Avid Traveler</h3>
+                    <p class="text-gray-600 mt-2 text-sm sm:text-base">
+                        I love exploring new destinations, capturing moments, and embracing diverse cultures. Traveling inspires my adaptability and global perspective in both work and life.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Education Section -->
-    <section id="education" class="py-24 bg-white">
+    <section id="education" class="py-16 sm:py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-12 text-teal-600">Education & Certifications</h2>
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-teal-600">Education & Certifications</h2>
             <div class="space-y-6">
-                <div class="bg-gray-50 p-6 rounded-xl shadow-lg fade-in hover-scale">
-                    <h3 class="text-2xl font-semibold text-gray-800">Diploma in Computer Studies</h3>
-                    <p class="text-gray-500">IDM Affiliated University College, Negombo</p>
+                <div class="bg-gray-50 p-4 sm:p-6 rounded-xl shadow-lg fade-in hover-scale">
+                    <h3 class="text-xl sm:text-2xl font-semibold text-gray-800">Diploma in Computer Studies</h3>
+                    <p class="text-gray-500 text-sm sm:text-base">IDM Affiliated University College, Negombo</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-xl shadow-lg fade-in hover-scale">
-                    <h3 class="text-2xl font-semibold text-gray-800">Secondary Education</h3>
-                    <p class="text-gray-500">Maris Stella College, Negombo</p>
+                <div class="bg-gray-50 p-4 sm:p-6 rounded-xl shadow-lg fade-in hover-scale">
+                    <h3 class="text-xl sm:text-2xl font-semibold text-gray-800">Secondary Education</h3>
+                    <p class="text-gray-500 text-sm sm:text-base">Maris Stella College, Negombo</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-xl shadow-lg fade-in hover-scale">
-                    <h3 class="text-2xl font-semibold text-gray-800">Digital Marketing (Facebook Marketing)</h3>
-                    <p class="text-gray-500">Certification</p>
+                <div class="bg-gray-50 p-4 sm:p-6 rounded-xl shadow-lg fade-in hover-scale">
+                    <h3 class="text-xl sm:text-2xl font-semibold text-gray-800">Digital Marketing (Facebook Marketing)</h3>
+                    <p class="text-gray-500 text-sm sm:text-base">Certification</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-xl shadow-lg fade-in hover-scale">
-                    <h3 class="text-2xl font-semibold text-gray-800">Azure Fundamentals (AZ-900) & Azure Administrator (AZ-104)</h3>
-                    <p class="text-gray-500">In Progress - NextGen Campus</p>
+                <div class="bg-gray-50 p-4 sm:p-6 rounded-xl shadow-lg fade-in hover-scale">
+                    <h3 class="text-xl sm:text-2xl font-semibold text-gray-800">Azure Fundamentals (AZ-900) & Azure Administrator (AZ-104)</h3>
+                    <p class="text-gray-500 text-sm sm:text-base">In Progress - NextGen Campus</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-gray-50">
+    <section id="contact" class="py-16 sm:py-24 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-12 text-teal-600">Get in Touch</h2>
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 text-teal-600">Get in Touch</h2>
             <div class="flex flex-col md:flex-row items-center gap-8">
                 <div class="md:w-1/2 fade-in">
-                    <p class="text-lg text-gray-600">Phone: <a href="tel:+94788882818" class="hover:text-teal-500">+94788882818</a></p>
-                    <p class="text-lg text-gray-600">Email: <a href="mailto:ashanthad1989@gmail.com" class="hover:text-teal-500">ashanthad1989@gmail.com</a></p>
-                    <p class="text-lg text-gray-600">Location: Negombo, Sri Lanka</p>
-                    <p class="text-lg text-gray-600 mt-4">Available for immediate hiring.</p>
-                    <a href="https://linkedin.com" target="_blank" class="inline-block mt-4 bg-teal-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-600 hover-scale">LinkedIn Profile</a>
+                    <p class="text-base sm:text-lg text-gray-600">Phone: <a href="tel:+94788882818" class="hover:text-teal-500">+94788882818</a></p>
+                    <p class="text-base sm:text-lg text-gray-600">Email: <a href="mailto:ashanthad1989@gmail.com" class="hover:text-teal-500">ashanthad1989@gmail.com</a></p>
+                    <p class="text-base sm:text-lg text-gray-600">Location: Negombo, Sri Lanka</p>
+                    <p class="text-base sm:text-lg text-gray-600 mt-4">Available for immediate hiring.</p>
+                    <a href="https://linkedin.com" target="_blank" class="inline-block mt-4 bg-teal-500 text-white px-4 sm:px-6 py-2 rounded-full font-semibold hover:bg-teal-600 hover-scale">LinkedIn Profile</a>
                 </div>
                 <div class="md:w-1/2 fade-in">
                     <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-4">
@@ -258,7 +341,7 @@
                             <label for="message" class="block text-sm font-medium text-gray-600">Message</label>
                             <textarea id="message" name="message" rows="4" class="form-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none" required></textarea>
                         </div>
-                        <button type="submit" class="bg-teal-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-600 hover-scale">Send Message</button>
+                        <button type="submit" class="bg-teal-500 text-white px-4 sm:px-6 py-2 rounded-full font-semibold hover:bg-teal-600 hover-scale">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -273,6 +356,22 @@
     </footer>
 
     <script>
+        // Toggle mobile menu and overlay
+        function toggleMenu() {
+            console.log('Toggling menu'); // Debug log
+            const menu = document.querySelector('.mobile-menu');
+            const hamburger = document.querySelector('.hamburger');
+            const overlay = document.querySelector('.overlay');
+            if (menu && hamburger && overlay) {
+                menu.classList.toggle('hidden');
+                hamburger.classList.toggle('active');
+                overlay.classList.toggle('hidden');
+                console.log('Menu state:', menu.classList.contains('hidden') ? 'Hidden' : 'Visible'); // Debug log
+            } else {
+                console.error('Menu, hamburger, or overlay not found'); // Debug log
+            }
+        }
+
         // Smooth scrolling for nav links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
