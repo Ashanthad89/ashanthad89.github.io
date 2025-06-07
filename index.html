@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashantha Fernando - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .hover-scale {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        .parallax {
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+        .form-input {
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: #38B2AC;
+            box-shadow: 0 0 0 3px rgba(56, 178, 172, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 shadow-lg fixed w-full z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-teal-500">Ashantha Fernando</h1>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="#home" class="text-gray-300 hover:text-teal-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">Home</a>
+                    <a href="#about" class="text-gray-300 hover:text-teal-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">About</a>
+                    <a href="#experience" class="text-gray-300 hover:text-teal-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">Experience</a>
+                    <a href="#skills" class="text-gray-300 hover:text-teal-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">Skills</a>
+                    <a href="#hobbies" class="text-gray-300 hover:text-teal-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">Hobbies</a>
+                    <a href="#contact" class="text-gray-300 hover:text-teal-500 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-teal-500 to-teal-700 relative overflow-hidden">
+        <div id="particles-js" class="hero-particles"></div>
+        <div class="text-center hero-content fade-in">
+            <h1 class="text-6xl font-bold mb-4 tracking-tight text-white">Ashantha Fernando</h1>
+            <p class="text-2xl mb-6 text-gray-200">IT Support Technician | Sales Specialist | Musician | Traveler</p>
+            <a href="#contact" class="bg-white text-teal-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 hover-scale transition-all duration-300">Connect With Me</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 text-teal-600">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2 mb-6 md:mb-0 fade-in">
+                    <img src="images/About-01.jpg" alt="Ashantha Fernando" class="rounded-xl shadow-lg hover-scale">
+                </div>
+                <div class="md:w-1/2 fade-in">
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        I’m a seasoned IT Support and Sales Specialist with over a decade of experience in technical troubleshooting, customer service, and digital marketing. I thrive on solving complex technical challenges and driving business growth through innovative solutions. Beyond tech, I’m a passionate guitarist in a Western band and an avid traveler, bringing creativity and a global perspective to my professional and personal life.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 text-teal-600">Work Experience</h2>
+            <div class="space-y-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg fade-in hover-scale">
+                    <h3 class="text-2xl font-semibold text-gray-800">IT Support Executive</h3>
+                    <p class="text-gray-500">Sevenrays Creative Solutions (Pvt) Ltd | 2021 - 2023</p>
+                    <ul class="list-disc list-inside mt-4 text-gray-600">
+                        <li>Provided expert IT support, maintaining and repairing internal computers and laptops.</li>
+                        <li>Designed and implemented an automated backup system for critical company documents.</li>
+                        <li>Monitored CCTV systems and managed vendor coordination for maintenance.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg fade-in hover-scale">
+                    <h3 class="text-2xl font-semibold text-gray-800">IT Solutions & Sales Specialist</h3>
+                    <p class="text-gray-500">Green Solutions Lanka (Pvt) Ltd | 2014 - 2021</p>
+                    <ul class="list-disc list-inside mt-4 text-gray-600">
+                        <li>Launched successful Facebook marketing campaigns to drive sales of PCs and mobile accessories.</li>
+                        <li>Conducted field visits to secure wholesale deals with retailers.</li>
+                        <li>Managed warranty claims and performed hardware repairs for PCs and laptops.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg fade-in hover-scale">
+                    <h3 class="text-2xl font-semibold text-gray-800">IT Support Technician</h3>
+                    <p class="text-gray-500">Arc Tech Lanka (Pvt) Ltd | 2012 - 2014</p>
+                    <ul class="list-disc list-inside mt-4 text-gray-600">
+                        <li>Diagnosed and resolved issues for over 1,000 computers, ensuring operational efficiency.</li>
+                        <li>Coordinated with vendors for warranty claims and repairs.</li>
+                        <li>Performed on-site PC repairs for labor tribunals nationwide.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg fade-in hover-scale">
+                    <h3 class="text-2xl font-semibold text-gray-800">Help Desk Technician</h3>
+                    <p class="text-gray-500">Etisalat Lanka (Pvt) Ltd | 2011 - 2012</p>
+                    <ul class="list-disc list-inside mt-4 text-gray-600">
+                        <li>Managed service desk operations in a high-volume IT environment.</li>
+                        <li>Monitored server room conditions to maintain system stability.</li>
+                        <li>Deployed operating systems using SCCM for seamless installations.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg fade-in hover-scale">
+                    <h3 class="text-2xl font-semibold text-gray-800">IT Executive</h3>
+                    <p class="text-gray-500">FRP Services Lanka (Pvt) Ltd | 2008 - 2011</p>
+                    <ul class="list-disc list-inside mt-4 text-gray-600">
+                        <li>Delivered technical support for desktops and laptops across the organization.</li>
+                        <li>Managed ERP system administration and resolved software issues efficiently.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 text-teal-600">Skills</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-gray-50 p-6 rounded-xl text-center fade-in hover-scale">
+                    <p class="font-semibold text-teal-600">Customer Service & Sales</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl text-center fade-in hover-scale">
+                    <p class="font-semibold text-teal-600">Digital Marketing</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl text-center fade-in hover-scale">
+                    <p class="font-semibold text-teal-600">Vendor Coordination</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl text-center fade-in hover-scale">
+                    <p class="font-semibold text-teal-600">IT Troubleshooting</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl text-center fade-in hover-scale">
+                    <p class="font-semibold text-teal-600">Hardware Maintenance</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl text-center fade-in hover-scale">
+                    <p class="font-semibold text-teal-600">ERP Administration</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl text-center fade-in hover-scale">
+                    <p class="font-semibold text-teal-600">CCTV Monitoring</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl text-center fade-in hover-scale">
+                    <p class="font-semibold text-teal-600">Microsoft Products</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section id="hobbies" class="py-24 bg-gray-50 parallax" style="background-image: url('https://via.placeholder.com/1920x1080?text=Travel+Background')">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 text-teal-600">Hobbies & Passions</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg fade-in hover-scale">
+                    <img src="images/band.jpg" alt="Guitar Performance" class="w-full h-64 object-cover rounded-lg mb-4">
+                    <h3 class="text-2xl font-semibold text-gray-800">Musician - Guitarist</h3>
+                    <p class="text-gray-600 mt-2">I’m a passionate guitarist, having performed in a Western band, bringing energy and creativity to live music. My love for music fuels my problem-solving mindset in tech.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg fade-in hover-scale">
+                    <img src="images/travel.jpg" alt="Travel Adventure" class="w-full h-64 object-cover rounded-lg mb-4">
+                    <h3 class="text-2xl font-semibold text-gray-800">Avid Traveler</h3>
+                    <p class="text-gray-600 mt-2">I love exploring new destinations, capturing moments, and embracing diverse cultures. Traveling inspires my adaptability and global perspective in both work and life.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 text-teal-600">Education & Certifications</h2>
+            <div class="space-y-6">
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg fade-in hover-scale">
+                    <h3 class="text-2xl font-semibold text-gray-800">Diploma in Computer Studies</h3>
+                    <p class="text-gray-500">IDM Affiliated University College, Negombo</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg fade-in hover-scale">
+                    <h3 class="text-2xl font-semibold text-gray-800">Secondary Education</h3>
+                    <p class="text-gray-500">Maris Stella College, Negombo</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg fade-in hover-scale">
+                    <h3 class="text-2xl font-semibold text-gray-800">Digital Marketing (Facebook Marketing)</h3>
+                    <p class="text-gray-500">Certification</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg fade-in hover-scale">
+                    <h3 class="text-2xl font-semibold text-gray-800">Azure Fundamentals (AZ-900) & Azure Administrator (AZ-104)</h3>
+                    <p class="text-gray-500">In Progress - NextGen Campus</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 text-teal-600">Get in Touch</h2>
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2 fade-in">
+                    <p class="text-lg text-gray-600">Phone: <a href="tel:+94788882818" class="hover:text-teal-500">+94788882818</a></p>
+                    <p class="text-lg text-gray-600">Email: <a href="mailto:ashanthad1989@gmail.com" class="hover:text-teal-500">ashanthad1989@gmail.com</a></p>
+                    <p class="text-lg text-gray-600">Location: Negombo, Sri Lanka</p>
+                    <p class="text-lg text-gray-600 mt-4">Available for immediate hiring.</p>
+                    <a href="https://linkedin.com" target="_blank" class="inline-block mt-4 bg-teal-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-600 hover-scale">LinkedIn Profile</a>
+                </div>
+                <div class="md:w-1/2 fade-in">
+                    <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-600">Name</label>
+                            <input type="text" id="name" name="name" class="form-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
+                            <input type="email" id="email" name="_replyto" class="form-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-600">Message</label>
+                            <textarea id="message" name="message" rows="4" class="form-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none" required></textarea>
+                        </div>
+                        <button type="submit" class="bg-teal-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-600 hover-scale">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>© 2025 Ashantha Fernando. Built with passion and creativity.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // GSAP ScrollTrigger for fade-in animations
+        gsap.registerPlugin(ScrollTrigger);
+        document.querySelectorAll('.fade-in').forEach(element => {
+            gsap.fromTo(element, 
+                { opacity: 0, y: 30 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+        });
+
+        // Particles.js for hero section background
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#ffffff' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: '#ffffff', opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' }, resize: true },
+                modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
+    </script>
+</body>
+</html>
